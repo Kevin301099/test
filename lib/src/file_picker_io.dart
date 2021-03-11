@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:io';
 import 'dart:typed_data';
+import 'dart:ui';
 
 import 'package:disk_space/disk_space.dart';
 import 'package:file_picker/file_picker.dart';
@@ -61,15 +62,23 @@ Future<bool> saveInternalBytes({Uint8List bytes, String path}) async {
 }
 
 /// Dummy implementation throwing an error. Should be overwritten by conditional imports.
-Future<String> exportToExternalStorage(
-    {Uint8List bytes, String fileName}) async {
+Future<String> exportToExternalStorage({
+    Uint8List bytes,
+    String fileName,
+    String subject,
+    String text,
+    Rect sharePositionOrigin,
+  }) async {
   String extension;
   if (fileName.contains('.'))
     extension = fileName.substring(fileName.lastIndexOf('.'));
   if (Platform.isAndroid || Platform.isIOS) {
     final String path = (await getTemporaryDirectory()).path + '/' + fileName;
     await File(path).writeAsBytes(bytes);
-    Share.shareFiles([path]);
+    Share.shareFiles([path],
+        subject: subject,
+        text: text,
+        sharePositionOrigin: sharePositionOrigin);
     return fileName;
   } else if (Platform.isWindows || Platform.isMacOS || Platform.isLinux) {
     String path = await saveFileDesktop(

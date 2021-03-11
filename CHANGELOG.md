@@ -1,11 +1,12 @@
 ## 4.2.9
 
 * Removed noisy output
+* Added optional parameters subject, text, and sharePositionOrigin to the `FilePickerCross.exportToStorage()` 
 
 ## 4.2.8
 
 * Updated dependencies
-* Fixed incampatibility with old gradle version
+* Fixed incompatibility with old gradle version
 
 ## 4.2.7
 

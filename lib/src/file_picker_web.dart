@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:html' as html;
 import 'dart:typed_data';
+import 'dart:ui';
 
 import '../file_picker_cross.dart';
 
@@ -85,8 +86,10 @@ Future<bool> saveInternalBytes({Uint8List bytes, String path}) async {
 }
 
 /// Dummy implementation throwing an error. Should be overwritten by conditional imports.
-Future<String> exportToExternalStorage(
-    {Uint8List bytes, String fileName}) async {
+Future<String> exportToExternalStorage({
+      Uint8List bytes, String fileName,
+      String subject, String text, Rect sharePositionOrigin,
+    }) async {
   html.AnchorElement link = html.AnchorElement(
       href: html.Url.createObjectUrlFromBlob(
           html.Blob([bytes], 'application/octet-stream')))

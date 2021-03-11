@@ -1,4 +1,5 @@
 import 'dart:typed_data';
+import 'dart:ui';
 
 import '../file_picker_cross.dart';
 
@@ -31,7 +32,13 @@ Future<bool> saveInternalBytes({Uint8List bytes, String path}) {
 }
 
 /// Dummy implementation throwing an error. Should be overwritten by conditional imports.
-Future<String> exportToExternalStorage({Uint8List bytes, String fileName}) {
+Future<String> exportToExternalStorage({
+    Uint8List bytes,
+    String fileName,
+    String subject,
+    String text,
+    Rect sharePositionOrigin,
+  }) {
   throw UnimplementedError('Unsupported Platform for file_picker_cross');
 }
 

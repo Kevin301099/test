@@ -22,6 +22,20 @@ myFile.saveToPath('/my/awesome/folder/' + myFile.fileName);
 // save our file to the internal storage or share to other apps
 myFile.exportToStorage();
 
+// for sharing to other apps you can also specify optional `text` and `subject`
+myFile.exportToStorage(
+  subject: "Awesome file",
+  text: "Here is the file you've been waiting for",
+);
+
+// on iPad you may also need to specify the `sharePositionOrigin` for native share UI
+GlobalKey widgetKey = GlobalKey();
+...
+RenderBox renderBox = widgetKey.currentContext.findRenderObject();
+Offset position = renderBox.localToGlobal(Offset.zero);
+filePickerCross.exportToStorage(
+    position.dx, position.dy, renderBox.size.width, renderBox.size.height);
+
 List<FilePickerCross> myMultipleFiles = await FilePickerCross.importMultipleFromStorage();
 print(myMultipleFiles);
 
