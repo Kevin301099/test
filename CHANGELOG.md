@@ -1,3 +1,7 @@
+## 4.3.0
+
+* Cherry-picked non-null safety code
+
 ## 4.2.9
 
 * Removed noisy output
