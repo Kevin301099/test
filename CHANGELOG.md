@@ -1,3 +1,7 @@
+## 4.3.1
+
+* Fixed type error when listing files
+
 ## 4.3.0
 
 * Cherry-picked non-null safety code
