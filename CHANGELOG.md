@@ -1,3 +1,7 @@
+## 4.3.2
+
+* Fixed outdated dependencies
+
 ## 4.3.1
 
 * Fixed type error when listing files
