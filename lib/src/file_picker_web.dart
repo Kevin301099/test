@@ -87,9 +87,12 @@ Future<bool> saveInternalBytes({Uint8List bytes, String path}) async {
 
 /// Dummy implementation throwing an error. Should be overwritten by conditional imports.
 Future<String> exportToExternalStorage({
-      Uint8List bytes, String fileName,
-      String subject, String text, Rect sharePositionOrigin,
-    }) async {
+  Uint8List bytes,
+  String fileName,
+  String subject,
+  String text,
+  Rect sharePositionOrigin,
+}) async {
   html.AnchorElement link = html.AnchorElement(
       href: html.Url.createObjectUrlFromBlob(
           html.Blob([bytes], 'application/octet-stream')))
@@ -103,7 +106,7 @@ Future<List<String>> listFiles({Pattern at, Pattern name}) async {
   Iterable<String> fs = openLocalFileSystem().keys.toList();
   if (at != null) fs = fs.where((element) => element.startsWith(at));
   if (name != null) fs = fs.where((element) => element.endsWith(name));
-  return fs;
+  return fs.toList();
 }
 
 /// Dummy implementation throwing an error. Should be overwritten by conditional imports.
