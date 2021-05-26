@@ -1,3 +1,7 @@
+## 4.4.0
+
+* tag to avoid confusion of the latest version number
+
 ## 4.3.0
 
 * got rid of non-null-safety dependencies
