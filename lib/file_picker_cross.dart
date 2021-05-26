@@ -20,13 +20,13 @@ class FilePickerCross {
   final String fileExtension;
 
   /// Returns the path the file is located at
-  final String path;
+  final String? path;
 
   final Uint8List _bytes;
 
   FilePickerCross(
     this._bytes, {
-    required this.path,
+    this.path,
     this.type = FileTypeCross.any,
     this.fileExtension = '',
   });
@@ -175,10 +175,16 @@ class FilePickerCross {
     String? subject,
     String? text,
     Rect? sharePositionOrigin,
+    String? fileName,
   }) {
+    assert(
+        fileName != null || this.fileName != null,
+        'You nether provided a file name nor an original file name could be'
+        'found for the path. You probably created a FilePickerCross from'
+        'an Uint8List and tried to export it without providing a file name.');
     return exportToExternalStorage(
       bytes: toUint8List(),
-      fileName: fileName,
+      fileName: fileName ?? this.fileName!,
       subject: subject,
       text: text,
       sharePositionOrigin: sharePositionOrigin,
@@ -186,8 +192,8 @@ class FilePickerCross {
   }
 
   /// Returns the name of the file. This typically is the part of the path after the last `/` or `\`.
-  String get fileName {
-    final parsedPath = '/' + path.replaceAll(r'\', r'/');
+  String? get fileName {
+    final parsedPath = '/' + path!.replaceAll(r'\', r'/');
     return parsedPath.substring(parsedPath.lastIndexOf('/') + 1);
   }
 
@@ -195,7 +201,7 @@ class FilePickerCross {
   /// *Note:* Even on Windows and web platforms, where file paths are typically presented using `\` instead
   /// of `/`, the path's single directories are separated using `/`.
   String get directory {
-    final parsedPath = '/' + path.replaceAll(r'\', r'/');
+    final parsedPath = '/' + path!.replaceAll(r'\', r'/');
     return parsedPath.substring(0, parsedPath.lastIndexOf('/'));
   }
 

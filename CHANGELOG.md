@@ -1,3 +1,7 @@
+## 4.4.1
+
+* made path optional
+
 ## 4.4.0
 
 * tag to avoid confusion of the latest version number

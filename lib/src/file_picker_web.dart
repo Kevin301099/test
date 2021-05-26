@@ -101,7 +101,7 @@ Future<bool> saveInternalBytes({
 /// Dummy implementation throwing an error. Should be overwritten by conditional imports.
 Future<String?> exportToExternalStorage({
   required Uint8List bytes,
-  required String fileName,
+  String? fileName,
   String? subject,
   String? text,
   Rect? sharePositionOrigin,
