@@ -105,11 +105,14 @@ class FilePickerCross {
     FileTypeCross type = FileTypeCross.any,
     String fileExtension = '',
   }) async {
-    final String path =
+    final String? path =
         await pickSingleFileAsPath(type: type, fileExtension: fileExtension);
 
-    return FilePickerCross(Uint8List(0),
-        path: path, fileExtension: fileExtension, type: type);
+    if (path != null)
+      return FilePickerCross(Uint8List(0),
+          path: path, fileExtension: fileExtension, type: type);
+    else
+      throw FileSelectionCanceledError();
   }
 
   /// Lists all internal files inside the app's internal memory
@@ -168,7 +171,7 @@ class FilePickerCross {
   /// origin rect for the share sheet to popover from on iPads. It has no effect
   /// on non-iPads.
   ///
-  Future<String> exportToStorage({
+  Future<String?> exportToStorage({
     String? subject,
     String? text,
     Rect? sharePositionOrigin,

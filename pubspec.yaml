@@ -1,6 +1,6 @@
 name: file_picker_cross
 description: Select, open, choose or pick documents, images videos or other files on Android, iOS, the desktop and the web for reading, writing, use as String, byte list or HTTP uploads.
-version: 4.2.9
+version: 4.3.0
 homepage: https://gitlab.com/testapp-system/file_picker_cross
 repository: https://gitlab.com/testapp-system/file_picker_cross.git
 issue_tracker: https://gitlab.com/testapp-system/file_picker_cross/issues
@@ -11,17 +11,20 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  file_picker: ^3.0.0
-  http: ^0.13.0
+  file_picker: ^3.0.2
+  http: ^0.13.3
   http_parser: ^4.0.0
-  file_chooser: ^0.1.6
-  path_provider: ^2.0.1
-  package_info: ^2.0.0
-  share: ^2.0.1
+  file_selector: ^0.8.2
+  file_selector_linux: ^0.0.2
+  file_selector_macos: ^0.0.4
+  file_selector_windows: ^0.0.2
+  path_provider: ^2.0.2
+  package_info: ^2.0.1
+  share: ^2.0.2
   disk_space: ^0.1.0+2
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
-  pedantic: any
+  pedantic: ^1.11.0

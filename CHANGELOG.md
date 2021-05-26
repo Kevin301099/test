@@ -1,3 +1,7 @@
+## 4.3.0
+
+* got rid of non-null-safety dependencies
+
 ## 4.2.9
 
 * Removed noisy output

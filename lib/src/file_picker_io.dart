@@ -5,7 +5,6 @@ import 'dart:ui';
 
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:disk_space/disk_space.dart';
-
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:file_picker/file_picker.dart';
 import 'package:file_picker_cross/file_picker_cross.dart';
@@ -43,7 +42,7 @@ Future<Map<String, Uint8List>> selectMultipleFilesAsBytes({
 }
 
 /// Implementation of file selection dialog delegating to platform-specific implementations
-Future<String> pickSingleFileAsPath({
+Future<String?> pickSingleFileAsPath({
   required FileTypeCross type,
   required String fileExtension,
 }) async {
@@ -76,7 +75,7 @@ Future<bool> saveInternalBytes({
 }
 
 /// Dummy implementation throwing an error. Should be overwritten by conditional imports.
-Future<String> exportToExternalStorage({
+Future<String?> exportToExternalStorage({
   required Uint8List bytes,
   required String fileName,
   String? subject,
@@ -103,15 +102,17 @@ Future<String> exportToExternalStorage({
 
     return fileName;
   } else if (Platform.isWindows || Platform.isMacOS || Platform.isLinux) {
-    String path = await saveFileDesktop(
+    String? path = await saveFileDesktop(
       fileExtension: extension,
       suggestedFileName: fileName,
     );
 
-    File file = await File(path).create(recursive: true);
-    file = await file.writeAsBytes(bytes);
+    if (path != null) {
+      File file = await File(path).create(recursive: true);
+      file = await file.writeAsBytes(bytes);
+    }
 
-    return file.path;
+    return path;
   } else {
     throw UnimplementedError(
         'Exporting files is not implemented on your platform.');
@@ -166,7 +167,10 @@ dynamic parseExtension(String fileExtension) {
           .trim()
           .replaceAll('.', '') // removing leading `.`
           .isNotEmpty)
-      ? fileExtension.split(',').map<String>((e) => e.trim().replaceAll(".", "")).toList()
+      ? fileExtension
+          .split(',')
+          .map<String>((e) => e.trim().replaceAll(".", ""))
+          .toList()
       : null;
 }
 
