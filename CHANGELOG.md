@@ -1,3 +1,7 @@
+## 4.5.0
+
+* updated dependencies
+
 ## 4.4.1
 
 * made path optional
